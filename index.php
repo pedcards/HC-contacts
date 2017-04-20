@@ -166,8 +166,8 @@
         </div>
     </div>
 
-    <div data-role="header" data-theme="b" >
-        <h4 style="white-space: normal; text-align: center" >Heart Center Contacts</h4>
+    <div data-role="header" data-position="fixed" data-theme="b" >
+        <p style="white-space: normal; text-align: center">Seattle Children's Hospital<br>Heart Center Contacts</p>
         <a href="#info" class="ui-btn ui-shadow ui-icon-bullets ui-btn-icon-notext ui-corner-all ui-btn-right" data-ajax="false">return to main</a>
     </div><!-- /header -->
     
