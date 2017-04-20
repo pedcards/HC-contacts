@@ -214,9 +214,9 @@
         echo '<a '.(($phone)?'href="tel:2069877777"':'').' class="ui-btn ui-mini">Physician Consult Line<br>206-987-7777</a>';
         echo '<br>';
         echo '<a '.(($phone)?'href="tel:2069872198"':'').' class="ui-btn ui-mini">Surgical/Procedure Coordinators<br>206-987-2198</a>';
-        echo '<a '.(($phone)?'href="tel:206987xxxx"':'').' class="ui-btn ui-mini">Prenatal Center<br>206-987-xxxx</a>';
-        echo '<a '.(($phone)?'href="tel:206987xxxx"':'').' class="ui-btn ui-mini">Regional Liaison: Emily<br>206-987-xxxx</a>';
-        echo '<a '.(($phone)?'href="tel:206987xxxx"':'').' class="ui-btn ui-mini">Regional Liaison: Anya<br>206-987-xxxx</a>';
+        echo '<a '.(($phone)?'href="tel:206987xxxx"':'').' class="ui-btn ui-mini">Prenatal Diagnosis and Treatment Program<br>206-987-5629</a>';
+        echo '<a '.(($phone)?'href="tel:206987xxxx"':'').' class="ui-btn ui-mini">Regional Nurse Practitioner: Emily<br>206-987-6442</a>';
+        echo '<a '.(($phone)?'href="tel:206987xxxx"':'').' class="ui-btn ui-mini">Community Liaison: Anya<br>206-987-1058</a>';
         ?>
     </div>
 
