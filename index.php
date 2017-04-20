@@ -7,7 +7,7 @@
         <meta name="viewport" content="initial-scale=1, width=device-width, user-scalable=no" />
         <?php
         $isLoc = true;
-        $ini = parse_ini_file("paging.ini");
+        $ini = parse_ini_file("../paging/paging.ini");
         $cdnJqm = $ini['jqm'];
         $cdnJQ = $ini['jquery'];
         $instr = $ini['copyright'];
@@ -39,8 +39,8 @@
     }
     $browser = $_SERVER['HTTP_USER_AGENT'];
     $phone = preg_match('/(iPhone|Android|Windows Phone)/i',$browser);
-    $xml = simplexml_load_file("list.xml");
-    $groups = ($xml->groups) ?: $xml->addChild('groups');
+    $xml = simplexml_load_file("../paging/list.xml");
+    //$groups = ($xml->groups) ?: $xml->addChild('groups');
     $chip = simplexml_load_file('../patlist/currlist.xml');
     $call = array(
         'CICU',
@@ -173,8 +173,8 @@
     
     <div data-role="content">
         <?php
-        echo '<a href="contactproc.php?group=SURG&id=55b948fa1c644" class="ui-btn ui-mini">Page Jonathon</a>';
-        echo '<a href="contactproc.php?group=CARDS&id=55b948fa18a52" class="ui-btn ui-mini">Page Mark</a>';
+        echo '<a href="proc.php?group=SURG&id=55b948fa1c644" class="ui-btn ui-mini">Page Jonathan</a>';
+        echo '<a href="proc.php?group=CARDS&id=55b948fa18a52" class="ui-btn ui-mini">Page Mark</a>';
         echo '<br>';
         foreach($call as $callU){
             $chName = $fc_call->$callU;
@@ -189,22 +189,22 @@
             $liUser = $xml->xpath("//user[@uid='".$liUserId."']")[0];
             $liGroup = $liUser->xpath('..')[0]->getName();
             if (strpos($callU,'CICU') !== false) {
-                echo '<a href="contactproc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
+                echo '<a href="proc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
                     .'Page CICU Attending'.(!$phone ? ' ' : '<br>')
                     .'On-Call: '.$chName.'</a>'."\r\n";
             }
             if (strpos($callU,'ICU_A') !== false) {
-                echo '<a href="contactproc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
+                echo '<a href="proc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
                     .'Page ICU Consult Cardiologist'.(!$phone ? ' ' : '<br>')
                     .'On-Call: '.$chName.'</a>'."\r\n";
             }
             if (strpos($callU,'Ward_A') !== false) {
-                echo '<a href="contactproc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
+                echo '<a href="proc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
                     .'Page Ward Consult Cardiologist'.(!$phone ? ' ' : '<br>')
                     .'On-Call: '.$chName.'</a>'."\r\n";
             }
             if (strpos($callU,'PM_We_A') !== false) {
-                echo '<a href="contactproc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
+                echo '<a href="proc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
                     .'Page Cardiology Attending'.(!$phone ? ' ' : '<br>')
                     .'On-Call: '.$chName.'</a>'."\r\n";
             }
