@@ -7,7 +7,7 @@
         <meta name="viewport" content="initial-scale=1, width=device-width, user-scalable=no" />
         <?php
         $isLoc = true;
-        $ini = parse_ini_file("paging.ini");
+        $ini = parse_ini_file("../paging/paging.ini");
         $cdnJqm = $ini['jqm'];
         $cdnJQ = $ini['jquery'];
         $instr = $ini['copyright'];

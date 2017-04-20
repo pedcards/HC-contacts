@@ -11,7 +11,7 @@
 <!--==========================================-->
     <?php
     $isLoc = true;
-    $ini = parse_ini_file("paging.ini");
+    $ini = parse_ini_file("../paging/paging.ini");
     $cdnJqm = $ini['jqm'];
     $cdnJQ = $ini['jquery'];
     $instr = $ini['copyright'];
@@ -60,8 +60,8 @@ function simple_decrypt($text, $salt = "") {
 
 $grp = filter_input(INPUT_GET,'group');
 $uid = filter_input(INPUT_GET,'id');
-$modDate = date ("m/d/Y", filemtime("list.xml"));
-$xml = simplexml_load_file("list.xml");
+$modDate = date ("m/d/Y", filemtime("../paging/list.xml"));
+$xml = simplexml_load_file("../paging/list.xml");
 $groups = $xml->groups;
 $groupfull = array();
 foreach ($groups->children() as $grp0) {

@@ -7,7 +7,7 @@
         <meta name="viewport" content="initial-scale=1, width=device-width, user-scalable=no" />
         <?php
         $isLoc = true;
-        $ini = parse_ini_file("paging.ini");
+        $ini = parse_ini_file("../paging/paging.ini");
         $cdnJqm = $ini['jqm'];
         $cdnJQ = $ini['jquery'];
         $instr = $ini['copyright'];
@@ -39,8 +39,8 @@
     }
     $browser = $_SERVER['HTTP_USER_AGENT'];
     $phone = preg_match('/(iPhone|Android|Windows Phone)/i',$browser);
-    $xml = simplexml_load_file("list.xml");
-    $groups = ($xml->groups) ?: $xml->addChild('groups');
+    $xml = simplexml_load_file("../paging/list.xml");
+    //$groups = ($xml->groups) ?: $xml->addChild('groups');
     $chip = simplexml_load_file('../patlist/currlist.xml');
     $call = array(
         'CICU',
@@ -166,15 +166,15 @@
         </div>
     </div>
 
-    <div data-role="header" data-theme="b" >
-        <h4 style="white-space: normal; text-align: center" >Heart Center Contacts</h4>
+    <div data-role="header" data-position="fixed" data-theme="b" >
+        <p style="white-space: normal; text-align: center">Seattle Children's Hospital<br>Heart Center Contacts</p>
         <a href="#info" class="ui-btn ui-shadow ui-icon-bullets ui-btn-icon-notext ui-corner-all ui-btn-right" data-ajax="false">return to main</a>
     </div><!-- /header -->
     
     <div data-role="content">
         <?php
-        echo '<a href="contactproc.php?group=SURG&id=55b948fa1c644" class="ui-btn ui-mini">Page Jonathon</a>';
-        echo '<a href="contactproc.php?group=CARDS&id=55b948fa18a52" class="ui-btn ui-mini">Page Mark</a>';
+        echo '<a href="proc.php?group=SURG&id=55b948fa1c644" class="ui-btn ui-mini">Page Jonathan</a>';
+        echo '<a href="proc.php?group=CARDS&id=55b948fa18a52" class="ui-btn ui-mini">Page Mark</a>';
         echo '<br>';
         foreach($call as $callU){
             $chName = $fc_call->$callU;
@@ -189,22 +189,22 @@
             $liUser = $xml->xpath("//user[@uid='".$liUserId."']")[0];
             $liGroup = $liUser->xpath('..')[0]->getName();
             if (strpos($callU,'CICU') !== false) {
-                echo '<a href="contactproc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
+                echo '<a href="proc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
                     .'Page CICU Attending'.(!$phone ? ' ' : '<br>')
                     .'On-Call: '.$chName.'</a>'."\r\n";
             }
             if (strpos($callU,'ICU_A') !== false) {
-                echo '<a href="contactproc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
+                echo '<a href="proc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
                     .'Page ICU Consult Cardiologist'.(!$phone ? ' ' : '<br>')
                     .'On-Call: '.$chName.'</a>'."\r\n";
             }
             if (strpos($callU,'Ward_A') !== false) {
-                echo '<a href="contactproc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
+                echo '<a href="proc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
                     .'Page Ward Consult Cardiologist'.(!$phone ? ' ' : '<br>')
                     .'On-Call: '.$chName.'</a>'."\r\n";
             }
             if (strpos($callU,'PM_We_A') !== false) {
-                echo '<a href="contactproc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
+                echo '<a href="proc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
                     .'Page Cardiology Attending'.(!$phone ? ' ' : '<br>')
                     .'On-Call: '.$chName.'</a>'."\r\n";
             }
@@ -214,9 +214,9 @@
         echo '<a '.(($phone)?'href="tel:2069877777"':'').' class="ui-btn ui-mini">Physician Consult Line<br>206-987-7777</a>';
         echo '<br>';
         echo '<a '.(($phone)?'href="tel:2069872198"':'').' class="ui-btn ui-mini">Surgical/Procedure Coordinators<br>206-987-2198</a>';
-        echo '<a '.(($phone)?'href="tel:206987xxxx"':'').' class="ui-btn ui-mini">Prenatal Center<br>206-987-xxxx</a>';
-        echo '<a '.(($phone)?'href="tel:206987xxxx"':'').' class="ui-btn ui-mini">Regional Liaison: Emily<br>206-987-xxxx</a>';
-        echo '<a '.(($phone)?'href="tel:206987xxxx"':'').' class="ui-btn ui-mini">Regional Liaison: Anya<br>206-987-xxxx</a>';
+        echo '<a '.(($phone)?'href="tel:206987xxxx"':'').' class="ui-btn ui-mini">Prenatal Diagnosis and Treatment Program<br>206-987-5629</a>';
+        echo '<a '.(($phone)?'href="tel:206987xxxx"':'').' class="ui-btn ui-mini">Regional Nurse Practitioner: Emily<br>206-987-6442</a>';
+        echo '<a '.(($phone)?'href="tel:206987xxxx"':'').' class="ui-btn ui-mini">Community Liaison: Anya<br>206-987-1058</a>';
         ?>
     </div>
 
