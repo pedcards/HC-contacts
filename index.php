@@ -64,7 +64,11 @@
     $logfile = 'logs/'.date('Ym').'.csv';
     $iplist = 'logs/iplist';
     lister($ipaddress);
-    logger('Access contacts back page.');
+    logger(
+        $geo->org.",".$geo->hostname.",".
+        $geo->city.",".$geo->region.",".$geo->country.",".
+        $geo->loc
+    );
     
     function simple_encrypt($text, $salt = "") {
         if (!$salt) {
