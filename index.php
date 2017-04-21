@@ -180,6 +180,7 @@
         echo '<a href="proc.php?group=SURG&id=55b948fa1c644" class="ui-btn ui-mini">Page Jonathan</a>';
         echo '<a href="proc.php?group=CARDS&id=55b948fa18a52" class="ui-btn ui-mini">Page Mark</a>';
         echo '<br>';
+        echo '<a '.(($phone)?'href="tel:2069876503"':'').' class="ui-btn ui-mini">Call CICU attending line<br>206-987-6503</a>';
         foreach($call as $callU){
             $chName = $fc_call->$callU;
             if ($chName=='') {
