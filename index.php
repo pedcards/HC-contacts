@@ -39,8 +39,8 @@
     }
     $browser = $_SERVER['HTTP_USER_AGENT'];
     $phone = preg_match('/(iPhone|Android|Windows Phone)/i',$browser);
+    $geo = json_decode(file_get_contents('http://ipinfo.io/'.$_SERVER['REMOTE_ADDR']));
     $xml = simplexml_load_file("../paging/list.xml");
-    //$groups = ($xml->groups) ?: $xml->addChild('groups');
     $chip = simplexml_load_file('../patlist/currlist.xml');
     $call = array(
         'CICU',
@@ -64,7 +64,11 @@
     $logfile = 'logs/'.date('Ym').'.csv';
     $iplist = 'logs/iplist';
     lister($ipaddress);
-    logger('Access contacts back page.');
+    logger(
+        $geo->org.",".$geo->hostname.",".
+        $geo->city.",".$geo->region.",".$geo->country.",".
+        $geo->loc
+    );
     
     function simple_encrypt($text, $salt = "") {
         if (!$salt) {
