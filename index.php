@@ -45,7 +45,8 @@
     $call = array(
         'CICU',
         'ICU_A',
-        'Ward_A'
+        'Ward_A',
+        'Txp'
     );
     $call_dt = date("Ymd");
     $call_d = date("l");
@@ -53,7 +54,8 @@
     if ((preg_match('/(Saturday|Sunday)/i',$call_d)) or ($call_t >= 17 || $call_t < 8)) {
         $call = array(
             ($call_t >= 17 || $call_t < 8) ? 'CICU_PM' : 'CICU',
-            'PM_We_A'
+            'PM_We_A',
+            'Txp'
         );
     }
     if ($call_t < 8) {
@@ -211,6 +213,11 @@
             if (strpos($callU,'PM_We_A') !== false) {
                 echo '<a href="proc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
                     .'Page Cardiology Attending'.(!$phone ? ' ' : '<br>')
+                    .'On-Call: '.$chName.'</a>'."\r\n";
+            }
+            if (strpos($callU,'Txp') !== false) {
+                echo '<a href="proc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
+                    .'Page Transplant Cardiologist'.(!$phone ? ' ' : '<br>')
                     .'On-Call: '.$chName.'</a>'."\r\n";
             }
         }
