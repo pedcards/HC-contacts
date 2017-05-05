@@ -46,6 +46,7 @@
         'CICU',
         'ICU_A',
         'Ward_A',
+        'EP',
         'Txp'
     );
     $call_dt = date("Ymd");
@@ -55,6 +56,7 @@
         $call = array(
             ($call_t >= 17 || $call_t < 8) ? 'CICU_PM' : 'CICU',
             'PM_We_A',
+            'EP',
             'Txp'
         );
     }
@@ -213,6 +215,11 @@
             if (strpos($callU,'PM_We_A') !== false) {
                 echo '<a href="proc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
                     .'Page Cardiology Attending'.(!$phone ? ' ' : '<br>')
+                    .'On-Call: '.$chName.'</a>'."\r\n";
+            }
+            if (strpos($callU,'EP') !== false) {
+                echo '<a href="proc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
+                    .'Page Electrophysiologist'.(!$phone ? ' ' : '<br>')
                     .'On-Call: '.$chName.'</a>'."\r\n";
             }
             if (strpos($callU,'Txp') !== false) {
