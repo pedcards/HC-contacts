@@ -16,6 +16,12 @@
         <script src="<?php echo (($isLoc) ? './jqm/' : 'http://code.jquery.com/').'jquery-'.$cdnJQ;?>.min.js"></script>
         <script src="<?php echo (($isLoc) ? './jqm' : 'http://code.jquery.com/mobile/'.$cdnJqm).'/jquery.mobile-'.$cdnJqm;?>.min.js"></script>
         <script src="./lib/cookies.js"></script>
+        <script type="text/javascript">
+            function doSubmit($in="") {
+                $.get("result.php?in="+$in);
+                //return false;
+            }
+        </script>
 <!--==========================================-->
         <title>Heart Center Contacts</title>
     </head>
@@ -130,6 +136,16 @@
         $user = $xml->xpath("//user[@uid='".$uid."']")[0];
         return array('first'=>$user['first'], 'last'=>$user['last'], 'uid'=>$user['uid']);
     }
+    function clickPhone($num,$str) {
+        global $phone;
+        $ph_str = substr($num,0,3).'-'.substr($num,3,3).'-'.substr($num,6,4);
+        echo '<a '.(($phone)?'href="tel:'.$num.'"':'')
+            .'class="ui-btn ui-mini" '
+            .'onclick="doSubmit(\''.$num.'\');">'
+            .$str.'<br>'
+            .$ph_str
+            .'</a>'."\r\n";
+    }
     function logger($str) {
         global $logfile, $ipaddress;
         $out = fopen($logfile,'a');
@@ -180,11 +196,12 @@
     </div><!-- /header -->
     
     <div data-role="content">
+        <a href="#" onclick="doSubmit();">Click here</a>
         <?php
         echo '<a href="proc.php?group=SURG&id=55b948fa1c644" class="ui-btn ui-mini">Page Jonathan</a>';
         echo '<a href="proc.php?group=CARDS&id=55b948fa18a52" class="ui-btn ui-mini">Page Mark</a>';
         echo '<br>';
-        echo '<a '.(($phone)?'href="tel:2069876503"':'').' class="ui-btn ui-mini">Call CICU attending line<br>206-987-6503</a>';
+        clickPhone('2069876503', 'Call CICU attending line');
         foreach($call as $callU){
             $chName = $fc_call->$callU;
             if ($chName=='') {
@@ -229,13 +246,13 @@
             }
         }
         echo '<br>';
-        echo '<a '.(($phone)?'href="tel:2069878899"':'').' class="ui-btn ui-mini">MEDCON/Transport<br>206-987-8899</a>';
-        echo '<a '.(($phone)?'href="tel:2069877777"':'').' class="ui-btn ui-mini">Physician Consult Line<br>206-987-7777</a>';
+        clickPhone('2069878899', 'MEDCON/Transport');
+        clickPhone('2069877777', 'Physician Consult Line');
         echo '<br>';
-        echo '<a '.(($phone)?'href="tel:2069872198"':'').' class="ui-btn ui-mini">Surgical/Procedure Coordinators<br>206-987-2198</a>';
-        echo '<a '.(($phone)?'href="tel:2069875629"':'').' class="ui-btn ui-mini">Prenatal Diagnosis and Treatment Program<br>206-987-5629</a>';
-        echo '<a '.(($phone)?'href="tel:2069876442"':'').' class="ui-btn ui-mini">Regional Nurse Practitioner: Emily<br>206-987-6442</a>';
-        echo '<a '.(($phone)?'href="tel:2069871058"':'').' class="ui-btn ui-mini">Community Liaison: Anya<br>206-987-1058</a>';
+        clickPhone('2069872198', 'Surgical/Procedure Coordinators');
+        clickPhone('2069875629', 'Prenatal Diagnosis and Treatment Program');
+        clickPhone('2069876442', 'Regional Nurse Practitioner: Emily');
+        clickPhone('2069871058', 'Community Liaison: Anya');
         ?>
     </div>
 
