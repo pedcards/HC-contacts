@@ -33,6 +33,15 @@ function dialog($title,$tcolor,$msg1,$msg2,$img,$alt,$bar,$fg,$bg) {
     </div>
     <?php
 }
+function simple_encrypt($text, $salt = "") {
+    if (!$salt) {
+        global $instr; $salt = $instr;
+    }
+    if (!$text) {
+        return $text;
+    }
+    return trim(base64_encode(mcrypt_encrypt(MCRYPT_BLOWFISH, $salt, $text, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB), MCRYPT_RAND))));
+}
 function simple_decrypt($text, $salt = "") {
     if (!$salt) {
         global $instr; $salt = $instr;
@@ -94,7 +103,7 @@ fputcsv(
         $pin,
         $uid,
         $fromName,
-        $messagePost        // TODO: could use str_rot13($messagePost) for some privacy
+        simple_encrypt($messagePost)
     )
 ); 
 fclose($out);
