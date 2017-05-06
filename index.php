@@ -17,8 +17,8 @@
         <script src="<?php echo (($isLoc) ? './jqm' : 'http://code.jquery.com/mobile/'.$cdnJqm).'/jquery.mobile-'.$cdnJqm;?>.min.js"></script>
         <script src="./lib/cookies.js"></script>
         <script type="text/javascript">
-            function doSubmit($in="") {
-                $.get("result.php?in="+$in);
+            function doSubmit($in="",$log="",$ip="") {
+                $.get("result.php", { in : $in });
                 //return false;
             }
         </script>
@@ -196,7 +196,6 @@
     </div><!-- /header -->
     
     <div data-role="content">
-        <a href="#" onclick="doSubmit();">Click here</a>
         <?php
         echo '<a href="proc.php?group=SURG&id=55b948fa1c644" class="ui-btn ui-mini">Page Jonathan</a>';
         echo '<a href="proc.php?group=CARDS&id=55b948fa18a52" class="ui-btn ui-mini">Page Mark</a>';
