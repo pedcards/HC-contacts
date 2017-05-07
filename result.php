@@ -26,7 +26,7 @@ function logger($str) {
     fputcsv(
         $out, 
         array(
-            date('c'),
+            preg_replace('/-07:00/','',date('c')),
             $ipaddress,
             $str
         )
