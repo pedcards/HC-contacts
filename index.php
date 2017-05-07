@@ -205,6 +205,14 @@
             if ($chName=='') {
                 continue;
             }
+            if ($callU=='EP') {
+                if ($call_d=='Friday' && $call_t>=17) {
+                    $chName = $chip->lists->forecast->xpath("call[@date='".date("Ymd",time()+60*60*24)."']/EP")[0];
+                }
+                if ($call_d=='Saturday') {
+                    $chName = $chip->lists->forecast->xpath("call[@date='".date("Ymd",time())."']/EP")[0];
+                }
+            }
             $liUserId = getUid($chName);
             if (! $liUserId) {
                 $liUserId = fuzzyname($chName)['uid'];
