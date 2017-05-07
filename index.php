@@ -76,8 +76,7 @@
     lister($ipaddress);
     logger(
         $geo->org.",".$geo->hostname.",".
-        $geo->city.",".$geo->region.",".$geo->country.",".
-        $geo->loc
+        $geo->city.",".$geo->region
     );
     
     function simple_encrypt($text, $salt = "") {
@@ -152,7 +151,7 @@
         fputcsv(
             $out, 
             array(
-                date('c'),
+                preg_replace('/-07:00/','',date('c')),
                 $ipaddress,
                 $str
             )
