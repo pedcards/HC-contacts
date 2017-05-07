@@ -76,8 +76,7 @@
     lister($ipaddress);
     logger(
         $geo->org.",".$geo->hostname.",".
-        $geo->city.",".$geo->region.",".$geo->country.",".
-        $geo->loc
+        $geo->city.",".$geo->region
     );
     
     function simple_encrypt($text, $salt = "") {
@@ -152,7 +151,7 @@
         fputcsv(
             $out, 
             array(
-                date('c'),
+                preg_replace('/-07:00/','',date('c')),
                 $ipaddress,
                 $str
             )
@@ -205,6 +204,14 @@
             $chName = $fc_call->$callU;
             if ($chName=='') {
                 continue;
+            }
+            if ($callU=='EP') {
+                if ($call_d=='Friday' && $call_t>=17) {
+                    $chName = $chip->lists->forecast->xpath("call[@date='".date("Ymd",time()+60*60*24)."']/EP")[0];
+                }
+                if ($call_d=='Saturday') {
+                    $chName = $chip->lists->forecast->xpath("call[@date='".date("Ymd",time())."']/EP")[0];
+                }
             }
             $liUserId = getUid($chName);
             if (! $liUserId) {
