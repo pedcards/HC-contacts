@@ -53,7 +53,8 @@
         'ICU_A',
         'Ward_A',
         'EP',
-        'Txp'
+        'Txp',
+        'Fetal'
     );
     $call_dt = date("Ymd");
     $call_d = date("l");
@@ -248,6 +249,11 @@
             if (strpos($callU,'Txp') !== false) {
                 echo '<a href="proc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
                     .'Page Transplant Cardiologist'.(!$phone ? ' ' : '<br>')
+                    .'On-Call: '.$chName.'</a>'."\r\n";
+            }
+            if (strpos($callU,'Fetal') !== false) {
+                echo '<a href="proc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
+                    .'Page Fetal Cardiologist'.(!$phone ? ' ' : '<br>')
                     .'On-Call: '.$chName.'</a>'."\r\n";
             }
         }
