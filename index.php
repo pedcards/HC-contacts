@@ -110,7 +110,7 @@
             "Mike" => "Michael",
             "Katherine" => "Katie"
         );
-        $names = explode(" ", $in);
+        $names = explode(" ", $in, 2);
         $el = $xml->xpath("//user[@last='".$names[1]."' and (@first='".$names[0]."' or @first='".strtr($names[0],$trans)."')]")[0];
         return $el['uid'];
     }
