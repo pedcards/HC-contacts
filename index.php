@@ -53,7 +53,7 @@
         'ICU_A',
         'Ward_A',
         'EP',
-        'Cath_res',
+        'Cath_lab',
         'Txp',
         'Fetal'
     );
@@ -65,6 +65,7 @@
             ($call_t >= 17 || $call_t < 8) ? 'CICU_PM' : 'CICU',
             'PM_We_A',
             'EP',
+            'Cath_lab',
             'Txp'
         );
     }
@@ -234,8 +235,8 @@
             clickOnCall('ICU_A','ICU Consult Cardiologist');
             clickOnCall('Ward_A','Ward Consult Cardiologist');
             clickOnCall('PM_We_A','Cardiology Attending');
-            clickOnCall('EP','Electrophysiologist GUy');
-            clickOnCall('Cath_res','Interventional Cath');
+            clickOnCall('EP','Electrophysiologist');
+            clickOnCall('Cath_lab','Interventional Cath');
             clickOnCall('Txp','Transplant Cardiologist');
             clickOnCall('Fetal','Fetal Cardiologist');
         }
