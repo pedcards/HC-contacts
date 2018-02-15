@@ -230,41 +230,14 @@
             }
             $liUser = $xml->xpath("//user[@uid='".$liUserId."']")[0];
             $liGroup = $liUser->xpath('..')[0]->getName();
-            if (strpos($callU,'CICU') !== false) {
-                echo '<a href="proc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
-                    .'Page CICU Attending'.(!$phone ? ' ' : '<br>')
-                    .'On-Call: '.$chName.'</a>'."\r\n";
-            }
-            if (strpos($callU,'ICU_A') !== false) {
-                echo '<a href="proc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
-                    .'Page ICU Consult Cardiologist'.(!$phone ? ' ' : '<br>')
-                    .'On-Call: '.$chName.'</a>'."\r\n";
-            }
-            if (strpos($callU,'Ward_A') !== false) {
-                echo '<a href="proc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
-                    .'Page Ward Consult Cardiologist'.(!$phone ? ' ' : '<br>')
-                    .'On-Call: '.$chName.'</a>'."\r\n";
-            }
-            if (strpos($callU,'PM_We_A') !== false) {
-                echo '<a href="proc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
-                    .'Page Cardiology Attending'.(!$phone ? ' ' : '<br>')
-                    .'On-Call: '.$chName.'</a>'."\r\n";
-            }
-            if (strpos($callU,'EP') !== false) {
-                echo '<a href="proc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
-                    .'Page Electrophysiologist'.(!$phone ? ' ' : '<br>')
-                    .'On-Call: '.$chName.'</a>'."\r\n";
-            }
-            if (strpos($callU,'Txp') !== false) {
-                echo '<a href="proc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
-                    .'Page Transplant Cardiologist'.(!$phone ? ' ' : '<br>')
-                    .'On-Call: '.$chName.'</a>'."\r\n";
-            }
-            if (strpos($callU,'Fetal') !== false) {
-                echo '<a href="proc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
-                    .'Page Fetal Cardiologist'.(!$phone ? ' ' : '<br>')
-                    .'On-Call: '.$chName.'</a>'."\r\n";
-            }
+            clickOnCall('CICU','CICU Attending');
+            clickOnCall('ICU_A','ICU Consult Cardiologist');
+            clickOnCall('Ward_A','Ward Consult Cardiologist');
+            clickOnCall('PM_We_A','Cardiology Attending');
+            clickOnCall('EP','Electrophysiologist GUy');
+            clickOnCall('Cath_res','Interventional Cath');
+            clickOnCall('Txp','Transplant Cardiologist');
+            clickOnCall('Fetal','Fetal Cardiologist');
         }
         echo '<br>';
         clickPhone('2069878899', 'MEDCON/Transport');
