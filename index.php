@@ -53,6 +53,7 @@
         'ICU_A',
         'Ward_A',
         'EP',
+        'Cath_res',
         'Txp',
         'Fetal'
     );
