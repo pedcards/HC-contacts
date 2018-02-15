@@ -136,6 +136,14 @@
         $user = $xml->xpath("//user[@uid='".$uid."']")[0];
         return array('first'=>$user['first'], 'last'=>$user['last'], 'uid'=>$user['uid']);
     }
+    function clickOnCall($num,$str) {
+        global $callU, $liGroup, $liUserId, $phone, $chName;
+        if (strpos($callU,$num) !== false) {
+            echo '<a href="proc.php?group='.$liGroup.'&id='.$liUserId.'" class="ui-btn ui-mini">'
+                .'Page '.$str.(!$phone ? ' ' : '<br>')
+                .'On-Call: '.$chName.'</a>'."\r\n";
+        }
+    }
     function clickPhone($num,$str) {
         global $phone;
         $ph_str = substr($num,0,3).'-'.substr($num,3,3).'-'.substr($num,6,4);
