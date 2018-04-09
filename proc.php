@@ -46,7 +46,10 @@ function simple_encrypt($text, $salt = "") {
     if (!$text) {
         return $text;
     }
-    return trim(base64_encode(mcrypt_encrypt(MCRYPT_BLOWFISH, $salt, $text, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB), MCRYPT_RAND))));
+    return openssl_encrypt(
+            $text, 
+            'AES-128-CBC',
+            $salt);
 }
 function simple_decrypt($text, $salt = "") {
     if (!$salt) {
@@ -55,7 +58,10 @@ function simple_decrypt($text, $salt = "") {
     if (!$text) {
         return $text;
     }
-    return trim(mcrypt_decrypt(MCRYPT_BLOWFISH, $salt, base64_decode($text), MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB), MCRYPT_RAND)));
+    return openssl_decrypt(
+            $text, 
+            'AES-128-CBC',
+            $salt);
 }
 
 $grp = filter_input(INPUT_GET,'group');
