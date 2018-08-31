@@ -49,7 +49,7 @@
     $xml = simplexml_load_file("../paging/list.xml");
     $chip = simplexml_load_file('../patlist/currlist.xml');
     $call = array(
-        'CICU',
+        'CICU_Red',
         'ICU_A',
         'Ward_A',
         'EP',
@@ -62,7 +62,7 @@
     $call_t = date("H");
     if ((preg_match('/(Saturday|Sunday)/i',$call_d)) or ($call_t >= 17 || $call_t < 8)) {
         $call = array(
-            ($call_t >= 17 || $call_t < 8) ? 'CICU_PM' : 'CICU',
+            ($call_t >= 17 || $call_t < 8) ? 'CICU_PM' : 'CICU_Red',
             'PM_We_A',
             'EP',
             'Cath_Lab',
@@ -237,7 +237,7 @@
             }
             $liUser = $xml->xpath("//user[@uid='".$liUserId."']")[0];
             $liGroup = $liUser->xpath('..')[0]->getName();
-            clickOnCall('CICU','CICU Attending');
+            clickOnCall('CICU_Red','CICU Attending');
             clickOnCall('ICU_A','ICU Consult Cardiologist');
             clickOnCall('Ward_A','Ward Consult Cardiologist');
             clickOnCall('PM_We_A','Cardiology Attending');
