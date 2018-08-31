@@ -213,8 +213,8 @@
     
     <div data-role="content">
         <?php
-        echo '<a href="proc.php?group=SURG&id=55b948fa1c644" class="ui-btn ui-mini">Page Jonathan</a>';
-        echo '<a href="proc.php?group=CARDS&id=55b948fa18a52" class="ui-btn ui-mini">Page Mark</a>';
+        echo '<a href="proc.php?group=SURG&id=55b948fa1c76f" class="ui-btn ui-mini">Page Mike McMullan</a>';
+        echo '<a href="proc.php?group=CARDS&id=55b948fa18a52" class="ui-btn ui-mini">Page Mark Lewin</a>';
         echo '<br>';
         clickPhone('2069876503', 'Call CICU attending line');
         foreach($call as $callU){
