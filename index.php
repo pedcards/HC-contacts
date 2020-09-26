@@ -255,7 +255,7 @@
         echo '<br>';
         clickPhone('2069872198', 'Surgical/Procedure Coordinators');
         clickPhone('2069875629', 'Prenatal Diagnosis and Treatment Program');
-        clickPhone('2069876442', 'Regional Nurse Practitioner: Emily');
+//        clickPhone('2069876442', 'Regional Nurse Practitioner: Emily');
 //        clickPhone('2069871058', 'Community Liaison: Anya');
         echo '<a href="proc.php?group=ADMIN&id=58adda7493667" class="ui-btn ui-mini">Community Liaison: Anya (send text)</a>';
         ?>
