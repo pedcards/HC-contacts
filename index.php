@@ -56,8 +56,8 @@
         'ICU_A',
         'Ward_A',
         'EP',
-        'Cath_Lab',
-        'Txp',
+        'Cath_res',
+        'Txp_ICU',
         'Fetal'
     );
     $call_dt = date("Ymd");
@@ -68,14 +68,14 @@
             ($call_t >= 17 || $call_t < 8) ? 'CICU_PM' : 'CICU_Red',
             'PM_We_A',
             'EP',
-            'Cath_Lab',
-            'Txp'
+            'Cath_res',
+            'Txp_ICU'
         );
     }
     if ($call_t < 8) {
         $call_dt = date("Ymd", time()-60*60*24);
     }
-    $fc_call = $chip->lists->forecast->xpath("call[@date='".$call_dt."']")[0];
+    $fc_call = $chip->forecast->xpath("call[@date='".$call_dt."']")[0];
     
     $logfile = 'logs/'.date('Ym').'.csv';
     $iplist = 'logs/iplist';
@@ -227,10 +227,10 @@
             }
             if ($callU=='EP') {
                 if ($call_d=='Friday' && $call_t>=17) {
-                    $chName = $chip->lists->forecast->xpath("call[@date='".date("Ymd",time()+60*60*24)."']/EP")[0];
+                    $chName = $chip->forecast->xpath("call[@date='".date("Ymd",time()+60*60*24)."']/EP")[0];
                 }
                 if ($call_d=='Saturday') {
-                    $chName = $chip->lists->forecast->xpath("call[@date='".date("Ymd",time())."']/EP")[0];
+                    $chName = $chip->forecast->xpath("call[@date='".date("Ymd",time())."']/EP")[0];
                 }
             }
             $liUserId = getUid($chName);
