@@ -50,7 +50,7 @@
     $phone = preg_match('/(iPhone|Android|Windows Phone)/i',$browser);
     $geo = json_decode(file_get_contents('http://ipinfo.io/'.$_SERVER['REMOTE_ADDR']));
     $xml = simplexml_load_file("../paging/list.xml");
-    $chip = simplexml_load_file('../patlist/currlist.xml');
+    $chip = simplexml_load_file('../patlist/call.xml');
     $call = array(
         'CICU_Red',
         'ICU_A',
