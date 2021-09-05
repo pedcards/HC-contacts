@@ -113,13 +113,23 @@
         global $xml;
         $trans = array(
             "Terry" => "Terrence",
+            "Terrence" => "Terry",
             "Steve" => "Stephen",
+            "Stephen" => "Steve",
             "Tom" => "Thomas",
+            "Thomas" => "Tom",
             "Jenny" => "Jennifer",
+            "Jennifer" => "Jenny",
             "Matt" => "Matthew",
+            "Matthew" => "Matt",
             "John" => "Jonathon",
+            "Jonathon" => "John",
             "Mike" => "Michael",
-            "Katherine" => "Katie"
+            "Michael" => "Mike",
+            "Katherine" => "Katie",
+            "Katie" => "Katherine",
+            "Andy" => "Andrew",
+            "Andrew" => "Andy"
         );
         $names = explode(" ", $in, 2);
         $el = $xml->xpath("//user[@last='".$names[1]."' and (@first='".$names[0]."' or @first='".strtr($names[0],$trans)."')]")[0];
