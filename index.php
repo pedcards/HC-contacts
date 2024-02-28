@@ -57,7 +57,7 @@
         'Ward_A',
         'EP',
         'Cath_res',
-        'Txp_ICU',
+        'Txp_res',
         'Fetal'
     );
     $call_dt = date("Ymd");
