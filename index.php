@@ -50,14 +50,14 @@
     $phone = preg_match('/(iPhone|Android|Windows Phone)/i',$browser);
     $geo = json_decode(file_get_contents('http://ipinfo.io/'.$_SERVER['REMOTE_ADDR']));
     $xml = simplexml_load_file("../paging/list.xml");
-    $chip = simplexml_load_file('../patlist/currlist.xml');
+    $chip = simplexml_load_file('../patlist/call.xml');
     $call = array(
         'CICU_Red',
         'ICU_A',
         'Ward_A',
         'EP',
-        'Cath_Lab',
-        'Txp',
+        'Cath_res',
+        'Txp_res',
         'Fetal'
     );
     $call_dt = date("Ymd");
@@ -68,14 +68,14 @@
             ($call_t >= 17 || $call_t < 8) ? 'CICU_PM' : 'CICU_Red',
             'PM_We_A',
             'EP',
-            'Cath_Lab',
-            'Txp'
+            'Cath_res',
+            'Txp_ICU'
         );
     }
     if ($call_t < 8) {
         $call_dt = date("Ymd", time()-60*60*24);
     }
-    $fc_call = $chip->lists->forecast->xpath("call[@date='".$call_dt."']")[0];
+    $fc_call = $chip->forecast->xpath("call[@date='".$call_dt."']")[0];
     
     $logfile = 'logs/'.date('Ym').'.csv';
     $iplist = 'logs/iplist';
@@ -111,18 +111,20 @@
     }
     function getUid($in) {
         global $xml;
-        $trans = array(
-            "Terry" => "Terrence",
-            "Steve" => "Stephen",
-            "Tom" => "Thomas",
-            "Jenny" => "Jennifer",
-            "Matt" => "Matthew",
-            "John" => "Jonathon",
-            "Mike" => "Michael",
-            "Katherine" => "Katie"
+        $nick = array(
+            "Steve" => "Stephen","Stephen" => "Steve",
+            "Tom" => "Thomas","Thomas" => "Tom",
+            "Jenny" => "Jennifer","Jennifer" => "Jenny",
+            "Matt" => "Matthew","Matthew" => "Matt",
+            "John" => "Jonathon","Jonathon" => "John",
+            "Mike" => "Michael","Michael" => "Mike",
+            "Katherine" => "Katie","Katie" => "Katherine",
+            "Andy" => "Andrew","Andrew" => "Andy",
+            "Roby" => "Roberto","Roberto" => "Roby",
+            "Terry" => "Terrence","Terrence" => "Terry"
         );
         $names = explode(" ", $in, 2);
-        $el = $xml->xpath("//user[@last='".$names[1]."' and (@first='".$names[0]."' or @first='".strtr($names[0],$trans)."')]")[0];
+        $el = $xml->xpath("//user[@last='".$names[1]."' and (@first='".$names[0]."' or @first='".strtr($names[0],$nick)."')]")[0];
         return $el['uid'];
     }
     function fuzzyname($str) {
@@ -227,10 +229,10 @@
             }
             if ($callU=='EP') {
                 if ($call_d=='Friday' && $call_t>=17) {
-                    $chName = $chip->lists->forecast->xpath("call[@date='".date("Ymd",time()+60*60*24)."']/EP")[0];
+                    $chName = $chip->forecast->xpath("call[@date='".date("Ymd",time()+60*60*24)."']/EP")[0];
                 }
                 if ($call_d=='Saturday') {
-                    $chName = $chip->lists->forecast->xpath("call[@date='".date("Ymd",time())."']/EP")[0];
+                    $chName = $chip->forecast->xpath("call[@date='".date("Ymd",time())."']/EP")[0];
                 }
             }
             $liUserId = getUid($chName);
@@ -244,8 +246,8 @@
             clickOnCall('ICU_A','ICU Consult Cardiologist');
             clickOnCall('Ward_A','Ward Consult Cardiologist');
             clickOnCall('PM_We_A','Cardiology Attending');
+            clickOnCall('Cath','Interventional Cath');
             clickOnCall('EP','Electrophysiologist');
-            clickOnCall('Cath_Lab','Interventional Cath');
             clickOnCall('Txp','Transplant Cardiologist');
             clickOnCall('Fetal','Fetal Cardiologist');
         }
@@ -255,7 +257,7 @@
         echo '<br>';
         clickPhone('2069872198', 'Surgical/Procedure Coordinators');
         clickPhone('2069875629', 'Prenatal Diagnosis and Treatment Program');
-        clickPhone('2069876442', 'Regional Nurse Practitioner: Emily');
+//        clickPhone('2069876442', 'Regional Nurse Practitioner: Emily');
 //        clickPhone('2069871058', 'Community Liaison: Anya');
         echo '<a href="proc.php?group=ADMIN&id=58adda7493667" class="ui-btn ui-mini">Community Liaison: Anya (send text)</a>';
         ?>
