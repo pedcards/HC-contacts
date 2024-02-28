@@ -246,8 +246,8 @@
             clickOnCall('ICU_A','ICU Consult Cardiologist');
             clickOnCall('Ward_A','Ward Consult Cardiologist');
             clickOnCall('PM_We_A','Cardiology Attending');
+            clickOnCall('Cath','Interventional Cath');
             clickOnCall('EP','Electrophysiologist');
-            clickOnCall('Cath_Lab','Interventional Cath');
             clickOnCall('Txp','Transplant Cardiologist');
             clickOnCall('Fetal','Fetal Cardiologist');
         }
