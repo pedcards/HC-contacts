@@ -112,7 +112,6 @@
     function getUid($in) {
         global $xml;
         $nick = array(
-            "Terry" => "Terrence","Terrence" => "Terry",
             "Steve" => "Stephen","Stephen" => "Steve",
             "Tom" => "Thomas","Thomas" => "Tom",
             "Jenny" => "Jennifer","Jennifer" => "Jenny",
@@ -120,7 +119,9 @@
             "John" => "Jonathon","Jonathon" => "John",
             "Mike" => "Michael","Michael" => "Mike",
             "Katherine" => "Katie","Katie" => "Katherine",
-            "Andy" => "Andrew","Andrew" => "Andy"
+            "Andy" => "Andrew","Andrew" => "Andy",
+            "Roby" => "Roberto","Roberto" => "Roby",
+            "Terry" => "Terrence","Terrence" => "Terry"
         );
         $names = explode(" ", $in, 2);
         $el = $xml->xpath("//user[@last='".$names[1]."' and (@first='".$names[0]."' or @first='".strtr($names[0],$nick)."')]")[0];
